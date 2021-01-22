@@ -1,13 +1,18 @@
 {
-  "name": "posta_Typescript",
+  "name": "postatypescript",
   "version": "1.0.0",
-  "description": "Node/Express Api with Typescript * Base Route `http://localhost:Port/` * Sample Route `http://localhost:Port/v1/getAllPost`",
-  "main": "index.js",
+  "description": "Node/Express Api with Typescript",
+  "main": "dist/api.ts",
   "directories": {
     "test": "test"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prebuild": "tslint -c tslint.json -p tsconfig.json --fix",
+    "build": "tsc -p",
+    "build:live": "nodemon --watch 'src/**/*.ts' --exec ts-node src/api.ts",
+    "prestart": "npm run build",
+    "start": "node dist/server.js",
+    "test": ""
   },
   "repository": {
     "type": "git",
@@ -21,10 +26,20 @@
   },
   "homepage": "https://github.com/anjorlar/posta_Typescript#readme",
   "dependencies": {
-    "cors": "^2.8.5",
-    "dotenv": "^8.2.0",
-    "express": "^4.17.1",
-    "helmet": "^4.3.1",
-    "mongoose": "^5.11.11"
+    "compression": "1.7.4",
+    "cors": "2.8.5",
+    "dotenv": "8.2.0",
+    "express": "4.17.1",
+    "helmet": "4.3.1",
+    "mongoose": "5.11.11"
+  },
+  "devDependencies": {
+    "@types/express": "4.17.11",
+    "@types/node": "14.14.22",
+    "nodemon": "^2.0.7",
+    "prettier": "2.2.1",
+    "ts-node": "9.1.1",
+    "tslint": "6.1.3",
+    "typescript": "4.1.3"
   }
 }
